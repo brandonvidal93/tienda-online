@@ -7,38 +7,52 @@ module.exports = function (config) {
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-chrome-launcher'),
+      require('karma-junit-reporter'),
+      require('karma-jasmine-html-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
-        // or set a specific seed with `seed: 4321`
-      },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+    remapIstanbulReporter: {
+      dir: require('path').join(__dirname, 'reports/coverage/app-base'),
+      reports: {
+        html: 'coverage',
+        lcovonly: 'reports/test-results/coverage/coverage.lcov'
+      }
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/tienda-online'),
-      subdir: '.',
+      // specify a common output directory
+      dir: require('path').join(__dirname, 'reports/coverage/app-base'),
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        // reporters not supporting the `file` property
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' },
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml','junit', 'coverage'],
+    htmlReporter: {
+      outputFile: 'reports/unit/units.html',
+
+      // Optional 
+      pageTitle: 'Vida - Tests Unitarios',
+      subPageTitle: 'Presentacion HTML de los test unitarios',
+      dir: 'reports/html/'
+    },
+    junitReporter: {
+      outputDir: 'reports/unit',
+      outputFile: 'test-results.xml',
+      suite: '',
+      useBrowserName: false
+   },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true
   });
 };

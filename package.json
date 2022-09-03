@@ -26,8 +26,8 @@
     "@angular/router": "~13.3.11",
     "bootstrap": "^5.2.0",
     "generator-eslint": "^3.0.1",
-    "owasp-dependency-check": "^0.0.21",
     "ngx-cookie-service": "~13.2.1",
+    "owasp-dependency-check": "^0.0.21",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -46,6 +46,7 @@
     "@stryker-mutator/typescript-checker": "^6.0.2",
     "@types/jasmine": "~4.0.3",
     "@types/jasminewd2": "~2.0.8",
+    "@types/jest": "^29.0.0",
     "@types/node": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "5.27.1",
     "@typescript-eslint/parser": "5.27.1",
@@ -58,7 +59,7 @@
     "karma-jasmine": "~5.0.1",
     "karma-jasmine-html-reporter": "^2.0.0",
     "karma-junit-reporter": "^2.0.1",
-    "typescript": "~4.6.2",
-    "stryker-cli": "^1.0.2"
+    "stryker-cli": "^1.0.2",
+    "typescript": "~4.6.2"
   }
 }
